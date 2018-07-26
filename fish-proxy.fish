@@ -4,9 +4,9 @@ set -x PROXY #your proxy
 set -x HOSTIP #your hostname
 
 function set_proxy #proxy下のの環境をexport
-    set -x http_proxy $PROXY
-    set -x https_proxy $PROXY
-    set -x ftp_proxy $PROXY
+    set -xg http_proxy $PROXY
+    set -xg https_proxy $PROXY
+    set -xg ftp_proxy $PROXY
     
     git config --global http.proxy $PROXY
     git config --global https.proxy $PROXY
