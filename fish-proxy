@@ -1,0 +1,39 @@
+#!/bin/fish
+
+set -x proxy #your proxy
+set -x ssid #your ssid
+
+function set_proxy
+    set -x http_proxy $proxy
+    set -x https_proxy $proxy
+    set -x ftp_proxy $proxy
+    set -x all_proxy $proxy
+    git config --global http.proxy $proxy
+    git config --global https.proxy $proxy
+    git config --global url."https://".insteadOf git://
+end
+
+function unset_proxy
+    set -e http_proxy
+    set -e https_proxy
+    set -e ftp_proxy
+    set -e all_proxy
+
+    git config --global --unset http.proxy
+    git config --global --unset https.proxy
+    git config --global --unset url."https://".insteadOf
+end
+
+function get_ssid
+    nmcli dev status | grep '接続済み' | awk '{print $4}'
+end
+
+get_ssid
+
+if test (get_ssid) = $ssid1
+    echo -e "\e[31mSwitch to proxy for school network\e[m"
+    set_proxy
+else
+    echo -e "\e[36mUnset proxy settings\e[m"
+    unset_proxy
+end
