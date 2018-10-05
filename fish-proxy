@@ -4,10 +4,10 @@ set -x proxy #your proxy
 set -x ssid #your ssid
 
 function set_proxy
-    set -x http_proxy $proxy
-    set -x https_proxy $proxy
-    set -x ftp_proxy $proxy
-    set -x all_proxy $proxy
+    set -xg http_proxy $proxy
+    set -xg https_proxy $proxy
+    set -xg ftp_proxy $proxy
+    set -xg all_proxy $proxy
     git config --global http.proxy $proxy
     git config --global https.proxy $proxy
     git config --global url."https://".insteadOf git://
