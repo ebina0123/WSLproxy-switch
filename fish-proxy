@@ -1,4 +1,4 @@
-#!/bin/fish
+#!/usr/bin/fish
 
 set -x proxy #your proxy
 set -x ssid #your ssid
